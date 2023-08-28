@@ -1,0 +1,63 @@
+1.Create table
+Query->
+		create table stud
+		(
+			id int primary key,
+			name varchar(20)
+		);
+
+		create table stud_details
+		(
+			id int references stud(id),
+			city varchar(20),
+			mobile_no number(10)
+		);
+		
+2.Insert 10 records in each table.
+Query->
+		insert into stud values(1,'Aryan');
+		insert into stud values(2,'Meet');
+		insert into stud values(3,'Param');
+		insert into stud values(4,'Parth');
+		insert into stud values(5,'Mann');
+		insert into stud values(6,'Sujal');
+		insert into stud values(7,'Harsh');
+		insert into stud values(8,'Krish');
+		insert into stud values(9,'Dhruv');
+		insert into stud values(10,'Kavi');
+		
+		insert into stud_details values(1,'Vyara',9999999999);
+		insert into stud_details values(2,'Surat',9898989898);
+		insert into stud_details values(3,'Surat',9797979797);
+		insert into stud_details values(4,'Baben',9696969696);
+		insert into stud_details values(5,'Bardoli',9595959595);
+		insert into stud_details values(6,'Isorali',9494949494);
+		insert into stud_details values(7,'Kaod',9393939393);
+		insert into stud_details values(8,'Madhi',9292929292);
+		insert into stud_details values(9,'Songadh',9191919191);
+		insert into stud_details values(10,'Bardoli',9090909090);
+		
+3.Display whose student come from the surat city.
+Query->
+		select s.id,s.name,sd.mobile_no
+		from stud s,stud_details sd
+		where s.id=sd.id and sd.city='Surat';
+Output->
+		2|Meet|9898989898
+		3|Param|9797979797
+		
+4.Display student details whose city name start with 'B'.
+Query->
+		select s.id,s.name
+		from stud s,stud_details sd
+		where s.id=sd.id and sd.city like 'B%';
+Output->
+		4|Parth
+		5|Mann
+		10|Kavi
+		
+5.Update mobile no who are comming from 'Surat'.
+Query->
+		update stud_details
+		set mobile_no=9876543210
+		where city like 'Surat' and id=3;
